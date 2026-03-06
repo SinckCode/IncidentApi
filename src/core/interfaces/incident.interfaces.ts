@@ -1,6 +1,7 @@
 import { IncidentType } from "../enums/incident-type.enum";
 
-export interface Incident {
+//DTO
+export interface IncidentCDto {
     title: string;
     description: string;
     lat: number;

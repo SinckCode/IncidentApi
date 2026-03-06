@@ -7,8 +7,6 @@ import { EmailOptions } from 'src/core/interfaces/mail-options.interfaces';
 export class EmailService {
     //SMTP
 
-
-
     private transporter = nodemailer.createTransport({
         service: envs.MAILER_SERVICE,
         auth:{

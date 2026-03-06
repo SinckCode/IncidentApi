@@ -3,10 +3,17 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmailModule } from './email/email.module';
 import { IncidentsModule } from './incidents/incidents.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { envs } from './config/envs';
+import { Incident } from './core/db/entities/incident.entity';
+import { dataSourceOptions } from './core/db/data.source';
 
 @Module({
-  imports: [EmailModule, IncidentsModule],
+  imports: [
+    EmailModule,
+    IncidentsModule,
+    TypeOrmModule.forRoot(dataSourceOptions)],
   controllers: [AppController],
-  providers: [AppService, IncidentsModule],
+  providers: [AppService],
 })
 export class AppModule {}
