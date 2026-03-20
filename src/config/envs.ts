@@ -11,5 +11,6 @@ export const envs = {
     DB_NAME: env.get("DB_NAME").required().asString(),
     DB_PORT: env.get("DB_PORT").required().asPortNumber(),
     DB_HOST: env.get("DB_HOST").required().asString(),
-    DB_USER: env.get("DB_USER").required().asString()
+    DB_USER: env.get("DB_USER").required().asString(),
+    APPINSIGHTS_CONNECTION_STRING: env.get("APPINSIGHTS_CONNECTION_STRING").required().asString()
 }

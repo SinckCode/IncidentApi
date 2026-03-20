@@ -6,12 +6,12 @@ export const dataSourceOptions : DataSourceOptions = {
         host: envs.DB_HOST,
         type: 'postgres',
         port: envs.DB_PORT,
-        name: envs.DB_NAME,
+        database: envs.DB_NAME,
         username: envs.DB_USER,
         password: envs.DB_PASSWORD,
         entities: [Incident],
         synchronize: false,
-        migrations: ["dist/core/db/migrations/*.js"],
+        migrations: ["dist/core/db/migrations/*"],
 
 }
 
