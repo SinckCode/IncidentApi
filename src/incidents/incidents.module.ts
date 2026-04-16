@@ -5,10 +5,12 @@ import { EmailService } from 'src/email/email.service';
 import { IncidentsService } from './incidents.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Incident } from 'src/core/db/entities/incident.entity';
+import { CacheModule } from 'src/cache/cache.module';
 
 @Module({
     imports: [
         EmailModule,
+        CacheModule,
         TypeOrmModule.forFeature([Incident])
     ],
     providers: [IncidentsService],
