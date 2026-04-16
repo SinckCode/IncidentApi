@@ -1,30 +1,40 @@
 services:
+
   incident-api:
-    image: 612-incident-api:latest
-    container_name: IncidenAPI
+    build:
+      context: .
+    container_name: IncidentAPI
     ports:
       - 3000:3000
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
       PORT: ${PORT}
       MAILER_EMAIL: ${MAILER_EMAIL}
-      MAPBOX_TOKEN: ${MAPBOX_TOKEN}
-      MAILER_PASSWORD: ${MAILER_PASSWORD}
       MAILER_SERVICE: ${MAILER_SERVICE}
-      DB_PASSWORD: ${DB_PASSWORD}
+      MAILER_PASSWORD: ${MAILER_PASSWORD}
+      MAPBOX_TOKEN: ${MAPBOX_TOKEN}
+      DB_HOST: postgres
       DB_NAME: ${DB_NAME}
       DB_PORT: ${DB_PORT}
-      DB_HOST: postgres
       DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
       APPINSIGHTS_CONNECTION_STRING: ${APPINSIGHTS_CONNECTION_STRING}
       REDIS_HOST: redis
       REDIS_PORT: ${REDIS_PORT}
+
+  postgres:
+    image: postgis/postgis:16-master
+    container_name: PostgresDB
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     volumes:
-      - postgres_data_db:/var/lib/postgresql
+      - postgres_data_db:/var/lib/postgresql/data
+
   redis:
     image: redis
-    container_name: 612-incidents-redis
+    container_name: 612-incident-redis
     ports:
       - 6379:6379
     volumes:
